@@ -1,0 +1,11 @@
+version: v1beta1
+
+plugins:
+  - name: go
+    out: api
+    opt: paths=source_relative
+    strategy: directory
+  - name: go-grpc
+    out: api
+    opt: paths=source_relative
+    strategy: directory

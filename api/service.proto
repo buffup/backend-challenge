@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+option go_package = "github.com/buffup/backend-challenge/pkg/api";
+
+service PointService {
+  rpc AwardPoints(AwardPointsRequest) returns (AwardPointsResponse) {}
+
+  rpc CreateLeaderboard(CreateLeaderboardRequest) returns (CreateLeaderboardResponse) {}
+
+  rpc GetLeaderboard(GetLeaderboardRequest) returns (GetLeaderboardResponse) {}
+}
+
+message AwardPointsRequest {
+  string entity_uuid = 1;
+  string game_uuid = 2;
+  uint64 points = 3;
+}
+
+message AwardPointsResponse {
+  string uuid = 1;
+}
+
+message CreateLeaderboardRequest {
+  repeated string game_uuids = 1;
+}
+
+message CreateLeaderboardResponse {
+  string leaderboard_uuid = 1;
+}
+
+message GetLeaderboardRequest {
+  string leaderboard_uuid = 1;
+}
+
+message GetLeaderboardResponse {
+  repeated LeaderboardRow rows = 1;
+
+  message LeaderboardRow {
+    string entity_uuid = 1;
+    int64 total_points = 2;
+    int64 rank = 3;
+    int64 position = 4;
+  }
+}
