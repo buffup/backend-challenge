@@ -7,13 +7,15 @@ import (
 )
 
 func main() {
-	db, err := database.Connect(context.Background())
+	dsn := "postgres://postgres:postgres@localhost:55021/points?sslmode=disable"
+
+	db, err := database.Connect(context.Background(), dsn)
 	if err != nil {
 		panic(err)
 	}
 	defer db.Close()
 
-	if err := database.CreateTables(context.Background(), db); err != nil {
+	if err := database.Migrate(context.Background(), dsn); err != nil {
 		panic(err)
 	}
 

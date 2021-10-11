@@ -2,20 +2,25 @@ package database
 
 import (
 	"context"
+	"fmt"
+	"net/http"
 
-	"github.com/uptrace/bun"
+	"github.com/buffup/backend-challenge/migrations"
+	"github.com/golang-migrate/migrate/v4"
+	_ "github.com/golang-migrate/migrate/v4/database/postgres"
+	"github.com/golang-migrate/migrate/v4/source/httpfs"
 )
 
-func CreateTables(ctx context.Context, db *bun.DB) error {
-	models := []interface{}{
-		&Point{},
-		&Leaderboard{},
+func Migrate(ctx context.Context, dsn string) error {
+	source, err := httpfs.New(http.FS(migrations.FS), ".")
+	if err != nil {
+		return fmt.Errorf("failed to load migrations: %w", err)
 	}
-	for _, m := range models {
-		_, err := db.NewCreateTable().Model(m).IfNotExists().Exec(ctx)
-		if err != nil {
-			return err
-		}
+
+	m, err := migrate.NewWithSourceInstance("httpfs", source, dsn)
+	if err != nil {
+		return fmt.Errorf("failed to create migrate instance: %w", err)
 	}
-	return nil
+
+	return m.Up()
 }

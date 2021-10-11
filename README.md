@@ -16,8 +16,8 @@ In the `api/` directory you will find a basic `gRPC` service definition for a po
 This service contains RPCs for creating and retrieving a `leaderboard`. It also includes an endpoint for awarding points.
 
 There is also a `internal/database` directory which includes some basic boilerplate for connecting to postgres and the
-necessary models. We have used [github.com/uptrace/bun](uptrace/bun) but feel free to replace this with something you are
-more comfortable working with.
+necessary models but feel free to change this structure if you want.
+We have used [https://github.com/golang-migrate/migrate](golang-migrate/migrate) to handle migrations.
 
 We need you to:
 
