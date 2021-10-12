@@ -3,7 +3,7 @@
 As part of the recruitment process we would like to complete the following backend challenge.
 We use this backend challenge to see how you go about solving a real-world problem that we have faced at Buff Up.
 
-For more details please review [https://sportbuff.notion.site/Backend-Challenge-0344091de0b44e8bb5b39200f132e85f](Sport Buff Backend Challenge)
+For more details please review [Buff Up Backend Challenge](https://sportbuff.notion.site/Backend-Challenge-0344091de0b44e8bb5b39200f132e85f)
 
 Please take the time to think about the code and structure of your work.
 
@@ -19,7 +19,7 @@ This service contains RPCs for creating and retrieving a `leaderboard`. It also 
 
 There is also a `internal/database` directory which includes some basic boilerplate for connecting to postgres and the
 necessary models but feel free to change this structure if you want.
-We have used [https://github.com/golang-migrate/migrate](golang-migrate/migrate) to handle migrations.
+We have used [golang-migrate/migrate](https://github.com/golang-migrate/migrate) to handle migrations.
 
 We need you to:
 
